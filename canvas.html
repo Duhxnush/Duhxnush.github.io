@@ -1,0 +1,35 @@
+<html>
+<head><title>Canvas</title></head>
+<body>
+    <canvas id="mycanvas" width="500%" height="500%"> Hello World</canvas>
+<script>
+var c = document.getElementById("mycanvas");
+var ctx = c.getContext("2d");
+c.width=window.innerWidth;
+c.height=window.innerHeight;
+var grd = ctx.createRadialGradient(75,50,500,90,60,100);
+grd.addColorStop(0,"blue");
+grd.addColorStop(1,"yellow");
+
+ctx.fillStyle = grd;
+ctx.fillRect(0,0,2160,1080);
+
+ctx.beginPath();
+ctx.fillStyle="#FFF810";
+ctx.fillRect(1080,720, 350, 400);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.fillStyle="#8F2D00";
+    ctx.moveTo(1080, 720);
+    ctx.lineTo(1250, 550);
+    ctx.lineTo(1428, 720);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(1150, 790, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+
+</script>
+</body>
+</html>
