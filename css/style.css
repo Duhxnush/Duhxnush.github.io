@@ -1,0 +1,86 @@
+.backg
+{
+    background-image: url("file:///D:/Duhxnush.github.io/images/bg1.jpg");
+    background-size: 100%;
+    background-attachment:fixed;
+}
+h1
+{
+    font-size: 40px;
+}
+h3
+{
+    font-size: 25px;
+}
+.ptex
+{
+    font-size: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.bord
+{
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    margin-left:10%;
+    margin-right: 10%;
+}
+img
+{
+    border-radius:20px ;
+}
+figcaption
+{
+    font-size:20px;
+    margin-top: 6px;
+    margin-bottom: 20px;
+}
+input[type=text],input[type=email]
+{
+    height: 30px;
+    border-radius: 4px;
+    font-size: 16px;
+    border-color:green ;
+    border-top: 0ch;
+    border-left: 0;
+    border-right: 0;
+    padding-left: 10px;
+    
+}
+input[type=search]
+{
+    height: 30px;
+    border-radius: 15px;
+    font-size: 20px;
+    padding-left: 15px;
+}
+input[type=button],input[type=color],input[type=date],input[type=file],input[type=submit]
+{
+    height: 30px;
+    border-radius: 4px;
+    font-size: 20px;
+    transition: .2s;
+}
+video
+{
+    width: 50%;
+    border-radius:20px;
+}
+.dest tr td img
+{
+    transition: .2s;
+}
+.dest tr td img:hover
+{
+    transform: scale(1.5);
+}
+input[type=submit]:hover
+{
+    transform: scale(1.2);
+}
+input[type=text]:focus ,input[type=email]:focus
+{
+    outline: none;
+    border-color: red;
+}
