@@ -1,0 +1,74 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="forests">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="waterbodies" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="area"/>
+              <xs:element type="xs:string" name="type"/>
+              <xs:element type="xs:string" name="region"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="forestdept" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="deptid"/>
+              <xs:element type="xs:string" name="branch"/>
+              <xs:element type="xs:string" name="location"/>
+              <xs:element type="xs:byte" name="force"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="complaints" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="compno"/>
+              <xs:element type="xs:string" name="accused"/>
+              <xs:element type="xs:string" name="date"/>
+              <xs:element type="xs:string" name="desc"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="resorts" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="licsno"/>
+              <xs:element type="xs:byte" name="areaocc"/>
+              <xs:element type="xs:byte" name="leaseperiod"/>
+              <xs:element type="xs:string" name="ownername"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="villages" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="villagename"/>
+              <xs:element type="xs:short" name="population"/>
+              <xs:element type="xs:byte" name="area"/>
+              <xs:element type="xs:byte" name="plots"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vegetation" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="age"/>
+              <xs:element name="nomenclature">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="genus"/>
+                    <xs:element type="xs:string" name="species"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:byte" name="treeno"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="forname"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
