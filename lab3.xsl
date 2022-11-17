@@ -3,10 +3,6 @@
 <xsl:template match="/">
 <html> 
 
-   <head> 
-   <title>lab3</title>
-   <link rel="stylesheet" href="css/style.css">
-   </head>
   <body style="font-family:Century Gothic;margin:0;" class="backg">
   <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><h1 align="center">forestonline.go</h1></div>
   <h2>Waterbodies</h2>
