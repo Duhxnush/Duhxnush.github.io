@@ -8,7 +8,7 @@
   <center>
   <h1>Dashboard</h1>
   <h2>Waterbodies</h2>
-  <table border="1">
+  <table>
     <tr>
       <th style="text-align:left">Area</th>
       <th style="text-align:left">Region</th>
@@ -24,7 +24,7 @@
   </table>
 
     <h2>Forest departments</h2>
-  <table border="1">
+  <table>
     <tr bgcolor="#9acd32">
       <th style="text-align:left">Department ID</th>
       <th style="text-align:left">Branch</th>
@@ -42,7 +42,7 @@
   </table>
 
     <h2>Resorts</h2>
-  <table border="1">
+  <table>
     <tr bgcolor="#9acd32">
       <th style="text-align:left">License Number</th>
       <th style="text-align:left">Area Occupied</th>
