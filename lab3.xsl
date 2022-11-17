@@ -5,9 +5,11 @@
 
   <body style="font-family:Century Gothic;margin:0;" class="backg">
   <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><h1 align="center">forestonline.go</h1></div>
+  <center>
+  <h1>Dashboard</h1>
   <h2>Waterbodies</h2>
   <table border="1">
-    <tr bgcolor="#9acd32">
+    <tr>
       <th style="text-align:left">Area</th>
       <th style="text-align:left">Region</th>
       <th style="text-align:left">Type</th>
@@ -56,6 +58,7 @@
     </tr>
     </xsl:for-each>
   </table>
+  </center>
 
 </body>
 </html>
