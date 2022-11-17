@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE forests [
+
+<!ELEMENT waterbodies (area,type,region)>
+<!ELEMENT area (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT region (#PCDATA)>
+
+<!ELEMENT forestdept (deptid,branch,location,force)>
+<!ELEMENT deptid (#PCDATA)>
+<!ELEMENT branch (#PCDATA)>
+<!ELEMENT location (#PCDATA)>
+<!ELEMENT force (#PCDATA)>
+
+<!ELEMENT complaints (deptid,compno,accused,date,desc)>
+<!ELEMENT deptid (#PCDATA)>
+<!ELEMENT compno (#PCDATA)>
+<!ELEMENT accused (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT desc (#PCDATA)>
+
+<!ELEMENT resorts (licsno,areaocc,leaseperiod,ownername)>
+<!ELEMENT licsno (#PCDATA)>
+<!ELEMENT areaocc (#PCDATA)>
+<!ELEMENT leaseperiod (#PCDATA)>
+<!ELEMENT ownername (#PCDATA)>
+
+
+]>
