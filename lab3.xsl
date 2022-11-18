@@ -3,7 +3,7 @@
 <xsl:template match="/">
 <html> 
   <head>
-  <title>Lab1</title>
+  <title>Lab3</title>
   <style>
     table table
     {
