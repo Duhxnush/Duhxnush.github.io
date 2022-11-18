@@ -118,5 +118,46 @@
             </nomenclature>
             <treeno>3</treeno>
         </vegetation>
-        
+        <animals>
+            <name>Leapord</name>
+            <count>300</count>
+            <foundin>East</foundin>
+            <species>Panthera</species>
+        </animals>
+        <animals>
+            <name>Cuckoos</name>
+            <count>175</count>
+            <foundin>Treetops</foundin>
+            <species>Birds</species>
+        </animals>
+        <animals>
+            <name>Elephants</name>
+            <count>450</count>
+            <foundin>Marshes</foundin>
+            <species>Mammals</species>
+        </animals>
+        <animals>
+            <name>Tigers</name>
+            <count>300</count>
+            <foundin>Grasslands</foundin>
+            <species>Panthers</species>
+        </animals>
+        <animals>
+            <name>Rattlesnake</name>
+            <count>850</count>
+            <foundin>sands</foundin>
+            <species>Reptiles</species>
+        </animals>
+        <animals>
+            <name>Salamander</name>
+            <count>950</count>
+            <foundin>Shores</foundin>
+            <species>Amphibians</species>
+        </animals>
+        <animals>
+            <name>Woodpeckers</name>
+            <count>754</count>
+            <foundin>Treetops</foundin>
+            <species>Birds</species>
+        </animals>
     </forests>
