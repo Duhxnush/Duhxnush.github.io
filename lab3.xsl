@@ -7,9 +7,14 @@
   <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><h1 align="center">forestonline.go</h1></div>
   <center>
   <h1>Dashboard</h1>
+
+  <table>
+  <tr>
+  <td>
   <h2>Waterbodies</h2>
   <table>
     <tr>
+
       <th style="text-align:left">Area</th>
       <th style="text-align:left">Region</th>
       <th style="text-align:left">Type</th>
@@ -22,7 +27,8 @@
     </tr>
     </xsl:for-each>
   </table>
-
+  </td>
+  <td>
     <h2>Forest departments</h2>
   <table>
     <tr bgcolor="#9acd32">
@@ -40,7 +46,10 @@
     </tr>
     </xsl:for-each>
   </table>
-
+  </td>
+  </tr>
+  <tr>
+  <td>
     <h2>Resorts</h2>
   <table>
     <tr bgcolor="#9acd32">
@@ -59,6 +68,7 @@
     </xsl:for-each>
   </table>
   </center>
+  </td>
 
 </body>
 </html>
