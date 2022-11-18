@@ -38,4 +38,10 @@
 <!ELEMENT genus (#CDATA)>
 <!ELEMENT species (#CDATA)>
 
+<!ELEMENT animals (name,count,foundin,species)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT count (#PCDATA)>
+<!ELEMENT foundin (#PCDATA)>
+<!ELEMENT species (#PCDATA)>
+
 ]>
