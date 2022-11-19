@@ -10,10 +10,19 @@
       text-align: center;
       border-radius:20px;
       background-color: antiquewhite;
+      border-width: 3px;
+      border-color:black;
     }
-     table
+     table td
     {
       text-align: center;
+      transition: .2s;
+      
+    }
+    table td:hover
+    {
+        transform: scale(1.2);
+
     }
   </style>
   <link rel="stylesheet" href="css/style.css"/>

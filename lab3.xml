@@ -28,9 +28,33 @@
                 <force>15</force>
         </forestdept>
         <forestdept>
-                <deptid>002</deptid>
-                <branch>bannerghatta checkpost</branch>
+                <deptid>003</deptid>
+                <branch>Kengeri Checkpoint</branch>
                 <location>bangalore</location>
+                <force>11</force>
+        </forestdept>
+        <forestdept>
+                <deptid>004</deptid>
+                <branch>Mysore road checkpost</branch>
+                <location>Bidadi</location>
+                <force>21</force>
+        </forestdept>
+        <forestdept>
+                <deptid>005</deptid>
+                <branch>Hubli checkpost</branch>
+                <location>Hubli</location>
+                <force>31</force>
+        </forestdept>
+        <forestdept>
+                <deptid>006</deptid>
+                <branch>Mangalore forest control</branch>
+                <location>Mangalore</location>
+                <force>17</force>
+        </forestdept>
+        <forestdept>
+                <deptid>007</deptid>
+                <branch>Ghaziabad checkpoint</branch>
+                <location>Ghaziabad</location>
                 <force>15</force>
         </forestdept>
         <complaints>
