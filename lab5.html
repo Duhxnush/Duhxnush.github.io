@@ -1,0 +1,47 @@
+<html>
+    <head><title>Lab1</title>
+        <link rel="stylesheet" href="css/style.css"></head>
+    <body style="font-family:Century Gothic;margin:0;" class="backg">
+        <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><h1 align="center">forestonline.go</h1></div>
+       <form name="myform">
+        <div class="center">
+            <table align="center" width="100%" style="background-color:#abdbe3;border-radius:20px;">
+                <tr style="">
+                    <td align="center" width="50%"><br><img src="images/farmer.jpg" height="500px"><br><br></td>
+                    <td align="center" width="50%"><h2>Signup Now!</h2><br>
+                        Enter Name:<br><input type="text" id="txtName"><br><br>
+                        Enter Mobile:<br><input type="text" id="mobno"><br><br>
+                        Enter Email:<br><input type="email"><br><br>
+                        Enter Password:<br><input type="password" id="pass"><br><br>
+                        Re-enter Password:<br><input type="password"><br><br><br>
+                        <input type="button" value="Signup!" onclick="ValidateTextBox()">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <script type="text/javascript">
+        function ValidateTextBox() {
+            if (document.getElementById("txtName").value.trim() == "") {
+                alert("Please enter Name!");
+                return false;
+            }
+
+            var Number = document.getElementById('mobno').value;
+            var IndNum = /^[0]?[789]\d{9}$/;
+
+            if(IndNum.test(Number)){
+                return;
+            }
+
+            else{
+                alert("Please enter Valid mobile number");
+            }
+            var value = document.getElementById('pass').value;
+    
+      };
+    
+
+    </script>
+    </body>
+    

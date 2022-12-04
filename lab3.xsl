@@ -17,7 +17,7 @@
     {
       text-align: center;
       transition: .2s;
-      
+      border-radius:5px;
     }
     table td:hover
     {
