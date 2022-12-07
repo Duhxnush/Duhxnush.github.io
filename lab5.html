@@ -6,42 +6,80 @@
        <form name="myform">
         <div class="center">
             <table align="center" width="100%" style="background-color:#abdbe3;border-radius:20px;">
-                <tr style="">
+                <tr>
                     <td align="center" width="50%"><br><img src="images/farmer.jpg" height="500px"><br><br></td>
                     <td align="center" width="50%"><h2>Signup Now!</h2><br>
                         Enter Name:<br><input type="text" id="txtName"><br><br>
                         Enter Mobile:<br><input type="text" id="mobno"><br><br>
-                        Enter Email:<br><input type="email"><br><br>
+                        Enter Email:<br><input type="email" id="email"><br><br>
                         Enter Password:<br><input type="password" id="pass"><br><br>
-                        Re-enter Password:<br><input type="password"><br><br><br>
-                        <input type="button" value="Signup!" onclick="ValidateTextBox()">
+                        Re-enter Password:<br><input type="password" id="cpass"><br><br><br>
+                        <button onclick="validate()">submit</button>
                     </td>
                 </tr>
             </table>
         </div>
     </form>
-    <script type="text/javascript">
-        function ValidateTextBox() {
-            if (document.getElementById("txtName").value.trim() == "") {
-                alert("Please enter Name!");
-                return false;
-            }
-
-            var Number = document.getElementById('mobno').value;
-            var IndNum = /^[0]?[789]\d{9}$/;
-
-            if(IndNum.test(Number)){
-                return;
-            }
-
-            else{
-                alert("Please enter Valid mobile number");
-            }
-            var value = document.getElementById('pass').value;
+    <script>
+        function validate() {
     
-      };
-    
+        //checking for null in name
+        testEle = document.getElementById("txtName").value;
+        testEle2 = document.getElementById("txtName");
+        if (testEle == "") {
+            testEle2.style.border = "red solid 3px";
+            alert("Please fill name");
+            return false;
+        }
+        testEle2.style.border = "green solid 3px";
 
-    </script>
+        //validating phone
+        testEle = document.getElementById("mobno").value;
+        testEle2 = document.getElementById("mobno");
+        var re = /^[6-9][0-9]\d{8}$/;
+        if (re.test(testEle)!= true) {
+            testEle2.style.border = "red solid 3px";
+            alert("Enter Valid phone");
+            return false;
+        }
+        testEle2.style.border = "green solid 3px";
+
+    
+        //validating email
+        var testEle = document.getElementById("email").value;
+          var testEle2 = document.getElementById("email");
+        var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          if (re.test(testEle)!= true) {
+            testEle2.style.border = "red solid 3px";
+            alert("email format invalid.");
+            return false;
+          }
+        var testEle = document.getElementById("email").value;
+          var testEle2 = document.getElementById("email");
+        var re = /@fworld.com$/;
+          if (re.test(testEle) != true) {
+            testEle2.style.border = "red solid 3px";
+            alert("Please enter your farmer world email.");
+            return false;
+          }
+        testEle2.style.border = "green solid 3px";
+
+            var str=document.getElementById("pass").value;
+            var str1=document.getElementById("pass");
+            var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+            if (re.test(str) != true) {
+            str1.style.border = "red solid 3px";
+            alert("password is weak");
+            return false;
+        }
+            
+            var str3=document.getElementById("cpass").value;
+            if(str!=str3){
+                alert("password dont match");
+                return false;}
+            
+    
+        }
+        </script>
     </body>
     

@@ -1,103 +1,78 @@
 <html>
     <head><title>Lab4</title>
         <link rel="stylesheet" href="css/style.css">
-    <style>
-        table
+        <style type="text/css">
+            table, th, td {
+          border: 0px solid black;
+        }
+        button
         {
-            width:60%;  
-            font-size: larger;
+            border-radius: 20px;
+            font-family: 'century gothic';
+            font-size: 20px;
         }
-    </style></head>
-    <body style="font-family:Century Gothic;margin:0;" class="backg"  align="center">
+        </style></head>
+    <body style="font-family:Century Gothic;margin:0;" class="backg">
         <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><h1 align="center">forestonline.go</h1></div>
-        
-<div id="demo" align="center"></div><br><br><br>
-<button onclick="loadDoc()">Open Waterbodies</button>
-<button onclick="loadDoc1()">open forest-department</button>
-<script>
-    function loadDoc() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                myFunction(this);
-            }
-        };
-        xhttp.open("GET", "lab3.xml", true);
-        xhttp.send();
-    }
-    function loadDoc1() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                myFunction1(this);
-            }
-        };
-        xhttp.open("GET", "lab3.xml", true);
-        xhttp.send();
-    }
-    function myFunction(xml) {
-        var i;
-        var xmlDoc = xml.responseXML;
-        var table="<table><tr><th>Area</th><th>Type</th><th>Regioin</th></tr>";
-        var x = xmlDoc.getElementsByTagName("waterbodies");
-        for (i = 0; i <x.length; i++) {
-            table += "<tr><td>" +
-            x[i].getElementsByTagName("area")[0].childNodes[0].nodeValue +
-            "</td><td>" +
-            x[i].getElementsByTagName("type")[0].childNodes[0].nodeValue +
-            "</td><td>" +
-            x[i].getElementsByTagName("region")[0].childNodes[0].nodeValue +
-            "</td><td>"+
-            "<input type='button' value='remove'></tr>";
+    <center>
+    <h2>Waterbodies</h2>
+    
+    
+      
+     <table style="border:0px;">
+        <tr>
+            <td>Area</td>
+            <td>Type</td>
+            <td>Region</td>
+        </tr>
+    
+        <tbody id="demo"></tbody>
+        <tbody id="dynamic_field1"></tbody>
+    </table><br><br>
+    <button type="button" name="add1" id="add1" class="btn btn-success" onclick="add()">Add More</button>
+
+    
+</center>
+    <script>
+        var tab="";
+    var a=0;
+    var b=0;
+    function loadXMLDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            parser = new DOMParser();
+    xmlDoc = parser.parseFromString(this.responseText,"text/xml");
+    
+    for(var a=0;xmlDoc.getElementsByTagName("waterbodies")[a].childNodes[0].nodeValue!=null;a++)
+    {
+    b++;
+    
+    document.getElementById("demo").innerHTML +="<tr id=row"+a+"><td><input type='text' value="+
+    xmlDoc.getElementsByTagName("area")[a].childNodes[0].nodeValue+"></td><td><input type='text' value="+xmlDoc.getElementsByTagName("type")[a].childNodes[0].nodeValue+"></td><td><input type='text' value="+xmlDoc.getElementsByTagName("region")[a].childNodes[0].nodeValue+"></td><td><button type=button name=remove id="+a+" class=btn btn-danger btn_remove1 onclick=remove(id)>X</button></td></tr>";
+         
+          }
+    
+    
         }
-        table=table+"</table>"+"<input type='button' value='Add Rows'><br>";
-        document.getElementById("demo").innerHTML = table;
+      };
+      xhttp.open("GET", "lab3.xml", true);
+      xhttp.send();
     }
-    function myFunction1(xml) {
-        var i;
-        var xmlDoc = xml.responseXML;
-        var table="<table><tr><th>deptid</th><th>branch</th><th>force</th><th>location</th></tr>";
-        var x = xmlDoc.getElementsByTagName("forestdept");
-        for (i = 0; i <x.length; i++) {
-            table += "<tr><td>" +
-            x[i].getElementsByTagName("deptid")[0].childNodes[0].nodeValue +
-            "</td><td>" +
-            x[i].getElementsByTagName("branch")[0].childNodes[0].nodeValue +
-            "</td><td>" +
-            x[i].getElementsByTagName("force")[0].childNodes[0].nodeValue +
-            "</td><td>" +
-            x[i].getElementsByTagName("location")[0].childNodes[0].nodeValue +
-            "</td></tr>";
-        }
-        table=table+"</table>";
-        document.getElementById("demo").innerHTML = table;
+    function remove(id)
+    {
+        document.getElementById("row"+id).remove();
+    }
+    function add()
+    {b++;
+    document.getElementById("dynamic_field1").innerHTML+="<tr id=row"+b+"><td><input type='number'></td><td><input type='text'></td><td><input type='text'></td><td><input type='text'></td><td><button type=button name=remove id="+b+" class=btn btn-danger btn_remove1 onclick=remove(id)>X</button></td> </tr>";
     }
     
     
-    function remove1(id)
-{
-	document.getElementById("row"+id).remove();
-}
-function remove(id)
-{
-	document.getElementById("dynamic_field1").deleteRow(-1);
-}
-function add()
-{x++;
-	table=document.getElementById("dynamic_field1")
-	var row= table.insertRow(-1);
-	var cell1 = row.insertCell(0);
-	var cell2 = row.insertCell(1);
-	var cell3 = row.insertCell(2);
-	var cell4 = row.insertCell(3);
-  var cell8 = row.insertCell(7);
-	cell1.innerHTML+="<tr id=row"+x+"><td><input type='text'></td></tr>";
-	cell2.innerHTML+="<tr id=row"+x+"><td><input type='text'></td></tr>";
-	cell3.innerHTML+="<tr id=row"+x+"><td><input type='text'></td></tr>";
-    cell4.innerHTML+="<tr id=row"+x+"><td><input type='text'></td></tr>";
-	cell8.innerHTML+="<tr id=row"+x+"<td><button type=button name=remove id="+x+" class=btn btn-danger btn_remove1 onclick=remove(id)>Remove</button></td> </tr>";
-}
+    loadXMLDoc();
+    
+
     </script>
-    
+
 </body>
 </html>

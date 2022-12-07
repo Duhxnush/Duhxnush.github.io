@@ -35,7 +35,7 @@
       <th>Type</th>
     </tr>
     <xsl:for-each select="forests/waterbodies">
-    <xsl:sort select="area"/>
+    <xsl:sort select="area" order="descending"/>
     <tr>
       <td><xsl:value-of select="area"/></td>
       <td><xsl:value-of select="region"/></td>
