@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        input[type=date],input[type=number]
+        {
+            height: 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            border-color:green ;
+            border-top: 0ch;
+            border-left: 0;
+            border-right: 0;
+            padding-left: 10px;
+        }
+        input[type=radio]
+        {
+            width:20px;
+            height: 20px;
+            transition: 1.5s;
+        }
+        input[type=radio]:checked
+        {
+            transform: scale(1.75);
+        }
+        input[type=date]:focus ,input[type=number]:focus
+        {
+            outline: none;
+            border-color: red;
+        }
+        button
+        {
+            font-size: x-large;
+            border-radius: 5px;
+            transition: 0.2s;
+        }
+        button:hover
+        {
+            transform: scale(1.25);
+        }
+
+        .sub_div 
+        {
+            position: absolute;
+            bottom: 0px;
+        }
+        p 
+        {
+            margin-left:20px;
+        }
+        div
+        {
+            transition: 1.5s;
+        }
+        #myDIV
+        {
+            border-radius: 100%;
+        }
+        #myDIV:active {
+            animation: mymove 1s;
+            }
+
+            @keyframes mymove {
+            20% {transform: rotate(180deg);}
+            }
+
+        body
+        {
+            transition: 1s;
+        }
+    </style>
+        
+</head>
+<body style="font-family:Century Gothic;margin:0;" class="backg" onload="fillbox()">
+    <div style="background-color: rgb(3, 137, 3);border-radius: 5px;" id="bg"><h1 align="center" style="margin-top:00px ;">forestonline.go</h1></div>
+    <div align="center" style="font-size:x-large">
+    <h1>Forest Tour Registration</h1>
+    Enter date: <br> <input type="date" id="date1" onchange="func1()"><br><br>
+    Enter No. of visitors:<br><input type="number" id="no1" onchange="func1()"><br><br>
+    Enter preferred forest:<br><input type="text" id="name1" onchange="func1()"><br><br>
+    <br>  
+    *your progress will be saved till submitted.<br><br>
+    <button onclick="remove()">submit</button>
+    </div><br><br><br><br><br>
+    <div>
+    <table width="100%">
+    <tr>
+        <td>
+    <div id="bg1" style="border-radius: 20px;">
+        <p>Choose your Theme<br><br>
+        <input type="radio" name="theme" id="aqua" style="accent-color: aqua;" onclick="func1('aqua')" value="aqua">
+        <input type="radio" name="theme" id="green" style="accent-color: green;" onclick="func1('green')" value="green">
+        <input type="radio" name="theme" id="antiquewhite" style="accent-color: antiquewhite;" onclick="func1('antiquewhite')" value="antiquewhite">
+        <input type="radio" name="theme" id="mediumorchid" style="accent-color: mediumorchid" onclick="func1('mediumorchid')" value="mediumorchid">
+        <input type="radio" name="theme" id="darkslategrey" style="accent-color: darkslategrey;" onclick="func1('darkslategrey')" value="darkslategrey">
+    </p>
+    </div>
+    </td>
+    <td  align="right">
+    <div>
+        <img src="images/rel.jpg" width="5%" onclick="func2()" id="myDIV">
+    </div>
+    </td>
+    </tr>
+    </table>
+    </div>
+    <script>
+        var back;
+        function setCookie(cname, cvalue, exdays) 
+        {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        function func1(x)
+        {
+            if(x=="theme")
+            {
+                var color=x;
+            }
+            var date1=document.getElementById("date1").value;
+            var no1=document.getElementById("no1").value;
+            var name1=document.getElementById("name1").value;
+
+            setCookie("visdate",date1,2);
+            setCookie("visnos",no1,2);
+            setCookie("visname1",name1,2);
+            setCookie("color",x,2);  ;  
+
+            document.getElementById("bg").style.backgroundColor=x;
+            document.getElementById("bg1").style.backgroundColor=x;
+        }
+
+        function func2()
+        {
+            var back=Math.floor(Math.random() * 7)+".jpg";
+            setCookie("back",back,2);
+            document.body.style.backgroundImage = "url(backs/"+back+")";
+        }
+
+        function getCookie(cname) 
+        {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function fillbox()
+        {
+            document.getElementById("date1").value=getCookie("visdate");
+            document.getElementById("no1").value=getCookie("visnos");
+            document.getElementById("name1").value=getCookie("visname1");
+            document.getElementById("bg").style.backgroundColor=getCookie("color");
+            document.getElementById("bg1").style.backgroundColor=getCookie("color");
+            document.getElementById(getCookie("color")).checked=true;
+            document.body.style.backgroundImage = "url(backs/"+getCookie("back")+")";
+        }
+
+        function remove()
+        {
+            alert("Submitted Successfully");
+            document.cookie = "visdate"+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "visnos"+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "visname1"+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            location.reload();
+        }
+
+    </script>
+</body>
+</html>
