@@ -1,35 +1,33 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+
     <style>
-          table td,th
-            {
-            text-align: center;
-            border-radius:20px;
-            background-color: antiquewhite;
-            font-size: 20px;
-            transition: 0.2ms;
-            }
-            table
-            {
-            text-align: center;
-            }
-            table td:hover ,th:hover
-            {
-                transform: scale(1.25);
-                cursor: pointer;
-            }
+        div, input{
+            font:15px Tahoma;
+            margin:10px;
+        }
+        input {
+            padding:5px 7px;
+        }
+        table, th, td {
+            border:solid 1px #CCC;
+            padding:1px 3px;
+            font:15px Tahoma;
+        }
+        th {
+            font-weight:bold;
+        }
     </style>
-    <link rel="stylesheet" href="css/style.css">
 </head>
- <body style="font-family:Century Gothic;margin:0;" class="backg">
-        <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><h1 align="center">forestonline.go</h1></div>
-    <div ng-app="myApp" ng-controller="myController" align="center">
+<body>
+    <div ng-app="myApp" ng-controller="myController">
 
         <!--THE SEARCH BOX-->
-        <font style="font-size: 25px;">Search&emsp;</font><input type="Search" ng-model="search" 
-            placeholder="Enter text to search" /><img src=""><br><br>
+        Search <input type="text" ng-model="search" 
+            placeholder="Enter some text to search" />
 
         <table>
             <tr>
