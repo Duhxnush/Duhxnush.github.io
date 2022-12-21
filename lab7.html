@@ -24,11 +24,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
  <body style="font-family:Century Gothic;margin:0;" class="backg">
-        <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><h1 align="center">forestonline.go</h1></div>
+        <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><font style="font-weight: bolder;font-size:35px;"><center>forestonline.go</center></font></div>
     <div ng-app="myApp" ng-controller="myController" align="center">
 
         <!--THE SEARCH BOX-->
-        <font style="font-size: 25px;">Search&emsp;</font><input type="Search" ng-model="search" 
+        <br><br><font style="font-size: 25px;">Search&emsp;</font><input type="Search" ng-model="search" 
             placeholder="Enter text to search" /><img src=""><br><br>
 
         <table>
@@ -40,12 +40,12 @@
             </tr>
 
             <!--TABLE ROWS WITH A FILTER-->
-            <tr ng-repeat="emps in employees | filter : search">
+            <tr ng-repeat="fires in forestfires | filter : search">
 
-                <td>{{emps.States}}</td>
-                    <td>{{emps.year1}}</td>
-                        <td>{{emps.year2}}</td>
-                            <td>{{emps.year3}}</td>
+                <td>{{fires.States}}</td>
+                    <td>{{fires.year1}}</td>
+                        <td>{{fires.year2}}</td>
+                            <td>{{fires.year3}}</td>
             </tr>
         </table>
     </div>
@@ -55,7 +55,7 @@
         .controller('myController', ['$scope', function ($scope) {
 
             // JSON ARRAY OBJECT.
-            $scope.employees =
+            $scope.forestfires =
             [
         {
         "States":"Andaman and Nicobar",
