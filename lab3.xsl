@@ -22,7 +22,6 @@
     table td:hover
     {
         transform: scale(1.2);
-
     }
   </style>
   <link rel="stylesheet" href="css/style.css"/>

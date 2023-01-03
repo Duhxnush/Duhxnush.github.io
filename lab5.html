@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="css/style.css"></head>
     <body style="font-family:Century Gothic;margin:0;" class="backg">
         <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><h1 align="center">forestonline.go</h1></div>
-       <form name="myform">
+        <form method="POST" name="myform">
         <div class="center">
             <table align="center" width="100%" style="background-color:#abdbe3;border-radius:20px;">
                 <tr>
@@ -14,11 +14,14 @@
                         Enter Email:<br><input type="email" id="email"><br><br>
                         Enter Password:<br><input type="password" id="pass"><br><br>
                         Re-enter Password:<br><input type="password" id="cpass"><br><br><br>
+                        <div class="h-captcha" data-sitekey="05427f31-111f-4829-848d-15e03d001c69" style="width: auto;"></div><br>
                         <button onclick="validate()">submit</button>
                     </td>
                 </tr>
             </table>
         </div>
+      
+      <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
     </form>
     <script>
         function validate() {
