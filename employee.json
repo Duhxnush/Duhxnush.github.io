@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Ashwin Kumar V",
+    "email": "ashwin@gmail.com",
+    "phone": "9148827639",
+    "role": "Manager",
+    "performance": 0.92,
+    "salary": 20000
+  },
+  {
+    "name": "Melvin Suresh",
+    "email": "melvin@gmail.com",
+    "phone": "9100997798",
+    "role": "Analyst",
+    "performance": 0.65,
+    "salary": 12000
+  },
+  {
+    "name": "Amey Rajan",
+    "email": "amey@gmail.com",
+    "phone": "9800657341",
+    "role": "Developer",
+    "performance": 0.78,
+    "salary": 2300
+  },
+  {
+    "name": "Tanuja S",
+    "email": "tanuja@gmail.com",
+    "phone": "8935667832",
+    "role": "HR",
+    "performance": 0.91,
+    "salary": 21300
+  },
+  {
+    "name": "Akshaya S",
+    "email": "akshaya@gmail.com",
+    "phone": "9100990012",
+    "role": "Intern",
+    "performance": 0.87,
+    "salary": 12000
+  },
+  {
+    "name": "Anisha Beck",
+    "email": "anisha@gmail.com",
+    "phone": "9167990012",
+    "role": "Intern",
+    "performance": 0.78,
+    "salary": 10000
+  },
+  {
+    "name": "Eren Jaeger",
+    "email": "tatakae@gmail.com",
+    "phone": "9146757639",
+    "role": "CEO",
+    "performance": 0.99,
+    "salary": 100000
+  },
+  {
+    "name": "Eren Jaeger",
+    "email": "tatakae@gmail.com",
+    "phone": "9146757639",
+    "role": "CEO",
+    "performance": 0.99,
+    "salary": 100000
+  }
+]

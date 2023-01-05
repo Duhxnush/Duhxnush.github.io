@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <style>
+          table td,th
+            {
+            text-align: center;
+            border-radius:5px;
+            background-color: antiquewhite;
+            font-size: 20px;
+            transition: 0.2ms;
+            }
+            table
+            {
+            text-align: center;
+            }
+            table td:hover ,th:hover
+            {
+                transform: scale(1.25);
+                cursor: pointer;
+            }
+    </style>
+    <script>
+          var app = angular.module("Clothingapp",[]);
+            app.controller("myCtrl",function($scope,$http){
+            $http.get("../forestfires.json").then(function(response){
+                $scope.forestfires = response.data;
+            });
+            });
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+ <body style="font-family:Century Gothic;margin:0;" class="backg">
+        <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><font style="font-weight: bolder;font-size:35px;"><center>forestonline.go</center></font></div>
+    <div ng-app="Clothingapp" ng-controller="myCtrl" align="center">
+
+        <!--THE SEARCH BOX-->
+        <h1> Forest Fires (2008-2011)</h1>
+        <font style="font-size: 25px;">Search&emsp;</font><input type="Search" ng-model="search" 
+            placeholder="Enter text to search" /><img src=""><br><br>
+
+        <table>
+            <tr>
+                <th>State</th>
+                    <th>2010-2011</th>
+                        <th>2009-2010</th>
+                            <th>2008-2009</th>
+            </tr>
+
+            <!--TABLE ROWS WITH A FILTER-->
+            <tr ng-repeat="fires in forestfires | filter : search">
+
+                <td>{{fires.States}}</td>
+                    <td>{{fires.year1}}</td>
+                        <td>{{fires.year2}}</td>
+                            <td>{{fires.year3}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
