@@ -8,7 +8,15 @@
 </head>
 <body>
     <h1>Node Server 1</h1>
-    <a href="./View">View Json data</a><br>
+
+    <form method='post' action='/update'>
+        Forest Name: <input type="text" name="rstate">
+        Year 1: <input type="number" name="year1">
+        Year 2: <input type="number" name="year2">
+        Year 3: <input type="number" name="year3">
+        <button type="submit">Click</button>
+    </form>
+
     <a href="./AddForests">Add Forests</a>
     <script src="./index.js"></script>
 </body>

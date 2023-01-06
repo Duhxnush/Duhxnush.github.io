@@ -4,15 +4,39 @@ const path = require('path')
 const express = require('express')
 const app = express()
 const port = 9000
-const jsonToTable = require('json-to-table');
+const bodyParser =require('body-parser') 
+app.use(bodyParser.urlencoded({extended: false}))
 
-var obj = {
-        "States":"Tamil nadu",
-        "year1": 34,
-        "year2": 148,
-        "year3": 276
+app.post('/update', function (req, res) { console.log(req.body);
+    var state=req.body.rstate
+    var year1=parseInt(req.body.year1)
+    var year2=parseInt(req.body.year2)
+    var year3=parseInt(req.body.year3)
+
+    var obj = {
+        "States":state,
+        "year1": year1,
+        "year2": year2,
+        "year3": year3
      
 }
+
+fs.readFile('./forestfires.json', (err, data) => {
+    if(!err) {
+        var updated = JSON.parse(data)
+        updated.push(obj)
+        fs.writeFile('./forestfires.json', JSON.stringify(updated, null, 2), (err) => {
+            if(!err) {
+                console.log("File Write Successful")
+            }
+            else {
+                console.log(err)
+            }
+        })
+    }
+})
+})
+
 
 app.use(express.static('public'));
 
