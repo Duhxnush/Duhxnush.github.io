@@ -5,19 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Node Server</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-    <h1>Node Server 1</h1>
+<body style="font-family:Century Gothic;margin: 0%;" class="backg">
+    <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><h1 align="center">forestonline.go</h1></div>
 
     <form method='post' action='/update'>
-        Forest Name: <input type="text" name="rstate">
-        Year 1: <input type="number" name="year1">
-        Year 2: <input type="number" name="year2">
-        Year 3: <input type="number" name="year3">
+        <center>
+        <div style="background-color:darkgray;width:40%;padding-top: 10px;">
+            <h2>Forest and Fires Update</h2>
+            <table>
+                <tr>
+                    <td>Forest Name:</td>
+                    <td><input type="text" name="rstate"></td>
+                </tr>
+                <tr>
+                    <td>Year 1:</td>
+                    <td><input type="number" name="year1"></td>
+                </tr>
+                <tr>
+                    <td>Year 2:</td>
+                    <td><input type="number" name="year2"></td>
+                </tr>
+                <tr>
+                    <td>Year 3:</td>
+                    <td><input type="number" name="year3"></td>
+                </tr>
+            </table><br>
         <button type="submit">Click</button>
+        <br><br>
+        </div>
+    </center>
     </form>
 
-    <a href="./AddForests">Add Forests</a>
+    <a href="./View" align="center" class="button1"><h3>View The Forests</h3></a>
     <script src="./index.js"></script>
 </body>
 </html>
