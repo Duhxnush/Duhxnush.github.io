@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        table tr td
+        {
+            background-color: antiquewhite;
+        }
+    </style>
+
+</head>
+<body style="font-family:Century Gothic;margin:0;" class="backg">
+    <center>
+    <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><font style="font-size: 35px;font-weight: bold;"><center>forestonline.go</center></font></div><br><br>
+    <table align="center">
+    <tr>
+        <td>
+    <form method='post' action='/submit'>
+        <div align="center">
+            <h1 align="center">Insert Values</h1><br>
+        <table align="center">
+        <tr><td>Name:</td><td><input type="text" name="name" /></td></tr>
+        <tr><td>Email:</td><td><input type="email" name="email" /></td></tr>
+        <tr><td>Phone:</td><td><input type="number" name="phone" /></td></tr>
+        <tr><td>Age:</td><td><input type="number" name="age" /></td></tr>
+        <tr><td>Gender:</td><td><input type="text" name="gender" /></td></tr>
+        </table><br>
+        <button type='submit'>Click</button>
+        </div>
+   </form>
+</td>
+<td>
+   <form method='post' action='/update'>
+        <div align="center">
+            <h1>Update age and phone</h1><br><br>
+            <table align="center">    
+                <tr><td>Enter your name:</td><td><input type="text" name="al_name" /></td></tr>
+            <tr>
+            <td>    
+            Choose field to edit:
+            </td>
+            <td>
+                <select name="al_field" >
+                <option value="phone">Phone</option>
+                <option value="age">Age</option>
+            </select>
+            </td>
+            </tr>
+            <tr>
+                <td>
+                    Enter the value:
+                </td>
+            <td>
+                <input type="number" name="al_value">
+            </td>
+            </tr>
+            </table><br><br>
+            <button type='submit'>Click</button>
+        </div>
+   </form>
+</td>
+</tr>
+<tr>
+    <td>
+   <form method='post' action='/delete'>
+    <div align="center">
+        <h1>Delete Record</h1><br><br>
+        Enter your name: <input type="text" name="del_name" /><br><br>
+        <button type='submit'>Click</button>
+    </div>
+    </form>
+<td>
+    <form method='post' action='/search'>
+        <div align="center">
+            <h1>Search Record</h1><br><br>
+            Enter your name: <input type="text" name="sea_name" /><br><br>
+            <button type='submit'>Click</button>
+        </div>
+    </form>
+</td>
+</tr>
+<tr>
+    <td colspan="2">
+    <form method='post' action='/display'>
+        <div align="center">
+            <h1>Click here to display all the records</h1><br><br>
+            <button type='submit'>Click</button>
+        </div>
+    </form>
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>

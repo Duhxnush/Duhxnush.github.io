@@ -5,7 +5,10 @@ const port = 3000
 app.use(express.static('../library'))
 var mysql=require('mysql')
 app.engine('pug', require('pug').__express)
+const path=require("path")
 
+
+app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.urlencoded({extended: false}))
 
 const connection = mysql.createConnection({
@@ -21,7 +24,7 @@ app.set('view engine', 'pug')
 
 app.get('/', function (req, res) {
 
-res.sendFile('index.html', { root: __dirname })
+res.sendFile('public/index.html', { root: __dirname })
 });
 
 connection.connect(function(err){ if (err) throw err;
@@ -29,7 +32,7 @@ connection.connect(function(err){ if (err) throw err;
 
 app.post('/submit', function (req, res) { console.log(req.body);
     console.log(req.body);
-    var sql="insert into user_details(username,email,phone,age,gender) values('"+req.body.name +"','"+req.body.email +"','"+req.body.phone +"','"+req.body.age +"','"+req.body.gender +"')"
+    var sql="insert into user_details(username,email,phone,age,gender) values('"+req.body.name+"','"+req.body.email +"','"+req.body.phone +"','"+req.body.age +"','"+req.body.gender +"')"
     connection.query(sql, function (err) {
     if (err) throw err
         res.send("success")
@@ -58,7 +61,7 @@ app.post('/Search', function (req, res) { console.log(req.body);
     console.log(req.body);
     var sql="select * from user_details WHERE username='"+req.body.sea_name+"';"
     connection.query(sql, function (err,result) {
-    if (err) throw err
+    if (err) throw err  
         res.send(result)
     })
 })
