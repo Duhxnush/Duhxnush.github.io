@@ -1,130 +1,721 @@
-<html>
-    <head><title>Lab1</title>
-        <link rel="stylesheet" href="css/style.css"></head>
-    <body style="font-family:Century Gothic;margin:0;" class="backg">
-        <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><h1 align="center">forestonline.go</h1></div>
-        
-        
-            <div align="center">
-                <h1>Home</h1>
-                <h3>Welcome to Forest Portal</h3>   
-            </div>
-            <div class="bord">
-                <div class="ptex">
-                    <p>
-                    The importance of forests cannot be underestimated. 
-                    We depend on forests for our survival, from the air we breathe to the wood we use. 
-                    Besides providing habitats for animals and livelihoods for humans, forests also offer watershed protection, prevent soil erosion and mitigate climate change.
-                    </p>
-                </div>
-                <div class="ptex">
-                    Forests are very crucial for these reason:
-                    <ol>
-                        <li>Promoting rainfall</li>
-                        <li>Reduces noise pollution</li>
-                        <li>Maintains the ecological balance.</li>
-                        <li>Acts as a wind barrier from heavy winds</li>
-                        <li>Provide moisture and lower the temperature</li>
-                        <li>Prevents flash floods by slowing down the movement of water...</li>
-                    </ol>
-                </div>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIB Bulk Upload Automation Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: #1f2d45;
+    --accent-blue: #3b82f6;
+    --accent-cyan: #06b6d4;
+    --accent-green: #10b981;
+    --accent-pink: #ec4899;
+    --accent-orange: #f97316;
+    --accent-purple: #8b5cf6;
+    --accent-slate: #64748b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #475569;
+  }
 
-            <div style="margin-top: 20px;" class="ptex">
-                <table class="dest">
-                    <tr>
-                        <th  colspan="3"><h3>Effects of Deforestation:</h3></th>
-                    </tr>
-                    <tr height="30%">
-                        <td width="30%" align="center"><img src="images/def1.jpg" width="80%"><figcaption><b>Soil erosion</b></figcaption></td>
-                        <td width="30%" align="center"><img src="images/def2.jpg" width="80%"><figcaption><b>Whirlwinds and Gusts</b></figcaption></td>
-                        <td width="30%" align="center"><img src="images/def3.webp" width="80%"><figcaption><b>Deserts</b></figcaption></td>
-                    </tr>
-                </table>
-            </div>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-            <div class="bord" align="center">
-                <h3>India Map</h3>
-                <img src="images/india-map.jpg" usemap="#workmap"><br><br>
-                <map name="workmap">
-                    <area shape="circle" coords="211,745,5" alt="Kerala" href="https://forest.kerala.gov.in">
-                    <area shape="circle" coords="295,630,5" alt="Tamilnadu" href="https://forest.tn.gov.in">
-                    <area shape="circle" coords="228,632,5" alt="Karnataka" href="https://aranya.gov.in">
-                    <area shape="circle" coords="302,544,5" alt="Andhrapradesh" href="https://forest.ap.gov.in">
-                    <area shape="circle" coords="251,521,5" alt="Telangana" href="https://forest.telangana.gov.in">
-                    <area shape="circle" coords="115,481,5" alt="Maharashtra" href="https://mahaforest.gov.in">
-                    <area shape="circle" coords="116,440,5" alt="Daman and Diu" href="https://daman.nic.in/dept-of-forest.aspx">
-                    <area shape="circle" coords="110,370,5" alt="Gujarat" href="https://forests.gujarat.gov.in">
-                    <area shape="circle" coords="191,277,5" alt="Rajasthan" href="https://forest.rajasthan.gov.in/content/raj/forest/en/home.html">
-                    <area shape="circle" coords="231,232,5" alt="Harayana" href="https://haryanaforest.gov.in/">
-                    <area shape="circle" coords="308,282,5" alt="Uttar Pradesh" href="http://upforest.gov.in/web/forestnew/Default.aspx">
-                    <area shape="circle" coords="225,371,5" alt="Madhya Pradesh" href="https://www.mpforest.gov.in/">
-                    <area shape="circle" coords="408,307,5" alt="Bihar" href="https://forestonline.bihar.gov.in/">
-                    <area shape="circle" coords="414,369,5" alt="Jharkand" href="https://forest.jharkhand.gov.in/">
-                    <area shape="circle" coords="432,445,5" alt="Odisha" href="https://www.odishaforest.in/index.html">
-                    <area shape="circle" coords="485,386,5" alt="West Bengal" href="http://www.westbengalforest.gov.in/">
-                    <area shape="circle" coords="488,262,5" alt="Sikkim" href="http://www.sikkimforest.gov.in/">
-                    <area shape="circle" coords="565,292,5" alt="Assam" href="http://forest.assam.gov.in/">
-                    <area shape="circle" coords="565,308,5" alt="Meghalaya" href="https://megforest.gov.in/">
-                    <area shape="circle" coords="552,352,5" alt="Tripura" href="https://forest.tripura.gov.in/">
-                    <area shape="circle" coords="588,354,5" alt="Mizoram" href="https://forest.mizoram.gov.in/">
-                    <area shape="circle" coords="616,324,5" alt="Manipur" href="https://forest.manipurforest.gov.in/">
-                    <area shape="circle" coords="619,303,5" alt="Nagaland" href="https://forest.nagaland.gov.in/">
-                    <area shape="circle" coords="605,265,5" alt="Arunachal Pradesh" href="https://forest.nagaland.gov.in/">
-                    <area shape="circle" coords="241,188,5" alt="Uttarakhand" href="https://forest.nagaland.gov.in/">
-                    <area shape="circle" coords="213,178,5" alt="Punjab" href="https://forest.nagaland.gov.in/">
-                    <area shape="circle" coords="222,167,5" alt="Himachal Pradesh" href="http://hpforest.gov.in/">
-                    <area shape="circle" coords="171,87,5" alt="Jammu and Kashmir" href="https://jkforest.gov.in/">
-                    <area shape="circle" coords="233,85,5" alt="Ladakh" href="https://leh.nic.in/department/forest-department/">
-                </map>
-                  
-                *Click on the black dots/Capital cities to move to the respective state forest portal
-            </div>
-            <div>
-                <form>
-                    <div align="center">
-                    <h3>Please Give Your Valuable Feedback</h3><br>
-                    Enter your Name : <input type="text"><br><br>
-                    Enter your email :&nbsp; <input type="email"><br><br>
-                    <textarea placeholder="Enter your feedback in 100 characters" rows="5" cols="40"></textarea><br><br>
-                    Rate us on scale of 1-5:<br>
-                    <input type="radio" value="1">
-                    <input type="radio" value="2">
-                    <input type="radio" value="3">
-                    <input type="radio" value="4">
-                    <input type="radio" value="5"><br>
-                    <input type="checkbox" value="1"> I Accept the terms and Condititons<br><br>    
-                    <input type="submit">
-                    </div>
-                    
-                </form>
-            </div>
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-            <table border="0" width="80%" align="center" style="margin-top: 40px; background-color: gray;border-radius: 20px;">
-                <tr>
-                    <td rowspan="3" width="30%" align="right"><img src="images/follow.png" width="60%"></td>
-                    <td width="7%" align="right"><img src="images/ig.png" width="80%"></td>
-                    <td width="20%">instagram.com/@duh</td>
-                    <td rowspan="3" ><font size="5px">Other Links
-                        <ul>
-                            <li><a href="lab2.html">Information Center</a></li>
-                            <li><a href="canvas.html">Canvas</a></li>
-                            <li><a href="lab3.xml">XML Lab3</a></li>
-                            <li><a href="lab4.html">Edit XML(lab4)</a></li>
-                            <li><a href="lab5.html">Signup(lab5)</a></li>
-                            <li><a href="lab6.html">Forest Tour Booking(lab6)</a></li>
-                        </ul></font>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="10%" align="right"><img src="images/twitter.png" width="80%"></td>
-                    <td width="30%">twitter.com/@duh</td>
-                </tr>
-                <tr>
-                    <td width="10%" align="right"><img src="images/yt.png" width="80%"></td>
-                    <td width="30%">instagram.com/@duhx</td>
-                </tr>
-            </table>
-    
-    </body>
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 28px 80px;
+  }
+
+  /* ── Header ── */
+  .header {
+    margin-bottom: 60px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .header-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    flex-shrink: 0;
+    margin-top: 6px;
+    box-shadow: 0 0 28px rgba(59,130,246,0.35);
+  }
+  .header-badge svg { width: 26px; height: 26px; fill: white; }
+  .header-text h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    background: linear-gradient(120deg, #f1f5f9 30%, var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header-text p {
+    margin-top: 10px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 600px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .header-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 1px solid;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .pill-blue  { color: var(--accent-blue);   border-color: rgba(59,130,246,0.4);  background: rgba(59,130,246,0.08); }
+  .pill-green { color: var(--accent-green);  border-color: rgba(16,185,129,0.4);  background: rgba(16,185,129,0.08); }
+  .pill-pink  { color: var(--accent-pink);   border-color: rgba(236,72,153,0.4);  background: rgba(236,72,153,0.08); }
+
+  /* ── Section card ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 32px 36px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: #2a3a56; }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+    opacity: 0.6;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--accent-cyan);
+    border-radius: 2px;
+  }
+
+  .card h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── Design Principles Table ── */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .principle-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .principle-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .principle-item .p-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+  }
+  .principle-item .p-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+  .principle-item .p-icon {
+    position: absolute;
+    top: 14px; right: 16px;
+    font-size: 1.1rem;
+    opacity: 0.5;
+  }
+
+  /* ── Workflow Phases ── */
+  .phases-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .phase-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .phase-item:hover { border-color: #334460; }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+  }
+  .phase-header::-webkit-details-marker { display: none; }
+
+  .phase-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1.5px solid;
+  }
+  .phase-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    flex: 1;
+  }
+  .phase-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid;
+  }
+  .phase-chevron {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+  }
+  details[open] .phase-chevron { transform: rotate(90deg); }
+
+  .phase-body {
+    padding: 0 22px 20px 70px;
+    font-size: 0.87rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  .phase-body strong { color: var(--text-primary); }
+  .phase-body ul { margin-left: 18px; margin-top: 6px; }
+  .phase-body ul li { margin-bottom: 5px; }
+  .phase-body .meta-row { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .meta-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  /* Phase color themes */
+  .ph-login  { --c: #10b981; }
+  .ph-nav    { --c: #f97316; }
+  .ph-file   { --c: #3b82f6; }
+  .ph-upload { --c: #8b5cf6; }
+  .ph-auth   { --c: #ec4899; }
+  .ph-post   { --c: #f59e0b; }
+  .ph-logout { --c: #64748b; }
+
+  .phase-item { border-color: color-mix(in srgb, var(--c) 20%, var(--border)); }
+  .phase-num { color: var(--c); border-color: color-mix(in srgb, var(--c) 40%, transparent); background: color-mix(in srgb, var(--c) 10%, transparent); }
+  .phase-tag { color: var(--c); border-color: color-mix(in srgb, var(--c) 35%, transparent); background: color-mix(in srgb, var(--c) 8%, transparent); }
+
+  /* ── Flowchart ── */
+  .flow-scroll {
+    overflow-x: auto;
+    padding: 8px 0 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .flow-scroll::-webkit-scrollbar { height: 4px; }
+  .flow-scroll::-webkit-scrollbar-track { background: transparent; }
+  .flow-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .flow-groups {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    min-width: max-content;
+    padding: 10px 4px;
+  }
+
+  .flow-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .flow-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+    border: 1px solid;
+    font-weight: 500;
+  }
+  .flow-group-label.initiator-label { color: var(--accent-blue);   border-color: rgba(59,130,246,0.4);  background: rgba(59,130,246,0.08); }
+  .flow-group-label.verifier-label  { color: var(--accent-green);  border-color: rgba(16,185,129,0.4);  background: rgba(16,185,129,0.08); }
+  .flow-group-label.releaser-label  { color: var(--accent-pink);   border-color: rgba(236,72,153,0.4);  background: rgba(236,72,153,0.08); }
+
+  .flow-nodes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+
+  .fnode {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 12px 16px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 120px;
+    max-width: 140px;
+    line-height: 1.35;
+    border: 1.5px solid;
+    position: relative;
+  }
+  .fnode.initiator { color: var(--accent-blue);  background: rgba(59,130,246,0.1);  border-color: rgba(59,130,246,0.4); }
+  .fnode.verifier  { color: var(--accent-green); background: rgba(16,185,129,0.1);  border-color: rgba(16,185,129,0.4); }
+  .fnode.releaser  { color: var(--accent-pink);  background: rgba(236,72,153,0.1);  border-color: rgba(236,72,153,0.4); }
+  .fnode.sub       { color: var(--text-secondary); background: rgba(255,255,255,0.04); border-color: var(--border); font-size: 0.74rem; }
+
+  .farrow {
+    width: 28px;
+    flex-shrink: 0;
+    height: 2px;
+    background: var(--border);
+    position: relative;
+  }
+  .farrow::after {
+    content: '';
+    position: absolute;
+    top: -4px; right: -1px;
+    border: 5px solid transparent;
+    border-left-color: var(--border);
+  }
+
+  .group-connector {
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    margin-top: 36px;
+  }
+  .group-connector .farrow { width: 22px; background: var(--text-muted); }
+  .group-connector .farrow::after { border-left-color: var(--text-muted); }
+
+  /* ── Best Practices ── */
+  .practices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .practice-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .practice-item:hover { border-color: #2a3a56; transform: translateY(-1px); }
+  .practice-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: rgba(59,130,246,0.12);
+    border: 1px solid rgba(59,130,246,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+  .practice-text {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card { animation: fadeUp 0.4s ease both; }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.1s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.2s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+
+  @media (max-width: 600px) {
+    .page-wrap { padding: 32px 16px 60px; }
+    .card { padding: 22px 20px; }
+    .phase-body { padding-left: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-badge">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 16v-2.38C3.4 13.36 3 12.73 3 12c0-.73.4-1.36 1-1.62V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v2.38c.6.26 1 .89 1 1.62s-.4 1.36-1 1.62V16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2zm2 0h12v-2H6v2zm0-4h12V8H6v4z"/></svg>
+    </div>
+    <div class="header-text">
+      <h1>CIB Bulk Upload<br>Automation Guide</h1>
+      <p>End-to-end workflow covering login, file preparation, bulk upload, multi-user authorization, validation, post-processing, and session management.</p>
+      <div class="header-pills">
+        <span class="pill pill-blue">Initiator</span>
+        <span class="pill pill-green">Verifier</span>
+        <span class="pill pill-pink">Releaser</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <div class="card">
+    <div class="section-label">Overview</div>
+    <h2>What This Guide Covers</h2>
+    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;font-weight:300;">
+      This guide explains the full CIB Bulk Upload automation workflow — all steps from login and file preparation through to multi-user authorization, details validation, post-processing, and secure logout.
+    </p>
+  </div>
+
+  <!-- Design Principles -->
+  <div class="card">
+    <div class="section-label">Design Principles</div>
+    <h2>Core Engineering Principles</h2>
+    <div class="principles-grid">
+      <div class="principle-item">
+        <div class="p-icon">⚙️</div>
+        <div class="p-title">Modularity &amp; Reusability</div>
+        <div class="p-desc">Functions are discrete and reusable across payment types.</div>
+      </div>
+      <div class="principle-item">
+        <div class="p-icon">📂</div>
+        <div class="p-title">Dynamic File Handling</div>
+        <div class="p-desc">Files are renamed and updated with unique payment data to ensure validation and avoid duplicates.</div>
+      </div>
+      <div class="principle-item">
+        <div class="p-icon">✔️</div>
+        <div class="p-title">Validation-Oriented</div>
+        <div class="p-desc">Verifications at key workflow points ensure correctness at every stage.</div>
+      </div>
+      <div class="principle-item">
+        <div class="p-icon">🔍</div>
+        <div class="p-title">Traceability</div>
+        <div class="p-desc">Runtime variables, file paths, and identifiers are stored for logging and debugging.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workflow -->
+  <div class="card">
+    <div class="section-label">Workflow</div>
+    <h2>Detailed Phases</h2>
+    <div class="phases-list">
+
+      <details class="phase-item ph-login">
+        <summary class="phase-header">
+          <div class="phase-num">01</div>
+          <div class="phase-title">Login — Initiator</div>
+          <span class="phase-tag">Auth</span>
+          <span class="phase-chevron">▶</span>
+        </summary>
+        <div class="phase-body">
+          <strong>Function:</strong> CIB_Login (v1.0)<br>
+          Authenticates the initiating user to provide secure access for bulk upload operations.
+          <div class="meta-row">
+            <span class="meta-tag">User: Initiator</span>
+            <span class="meta-tag">v1.0</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="phase-item ph-nav">
+        <summary class="phase-header">
+          <div class="phase-num">02</div>
+          <div class="phase-title">Navigation</div>
+          <span class="phase-tag">Setup</span>
+          <span class="phase-chevron">▶</span>
+        </summary>
+        <div class="phase-body">
+          <strong>Function:</strong> CIB_Bulk Uploads_Navigation (v1.0)<br>
+          Navigates to the bulk upload test case screen within the application.
+          <div class="meta-row">
+            <span class="meta-tag">User: Initiator</span>
+            <span class="meta-tag">v1.0</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="phase-item ph-file">
+        <summary class="phase-header">
+          <div class="phase-num">03</div>
+          <div class="phase-title">File Preparation</div>
+          <span class="phase-tag">Data</span>
+          <span class="phase-chevron">▶</span>
+        </summary>
+        <div class="phase-body">
+          <strong>Function:</strong> CIB_Bulk Uploads_Download and Update SDMC File (v1.0)<br>
+          Downloads the template, renames the file, and updates XLSX / CSV / TXT with unique payment data.
+          <div class="meta-row">
+            <span class="meta-tag">Formats: XLSX · CSV · TXT</span>
+            <span class="meta-tag">User: Initiator</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="phase-item ph-upload">
+        <summary class="phase-header">
+          <div class="phase-num">04</div>
+          <div class="phase-title">Bulk Upload Process</div>
+          <span class="phase-tag">Core</span>
+          <span class="phase-chevron">▶</span>
+        </summary>
+        <div class="phase-body">
+          <strong>Functions:</strong> Domestic/Internal Uploads, Payment Review, Receipt Generation, Bulk Summary<br>
+          Fills payment details, validates the review screen, generates receipts, and checks the bulk summary.
+          <div class="meta-row">
+            <span class="meta-tag">User: Initiator</span>
+            <span class="meta-tag">Receipt Generated</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="phase-item ph-auth">
+        <summary class="phase-header">
+          <div class="phase-num">05</div>
+          <div class="phase-title">Authorization Process</div>
+          <span class="phase-tag">Multi-User</span>
+          <span class="phase-chevron">▶</span>
+        </summary>
+        <div class="phase-body">
+          <ul>
+            <li>Submit for Authorization — Self Auth (Initiator)</li>
+            <li>Verifier login → Pending Tasks Approval/Rejection → Bulk Summary → Logout</li>
+            <li>Releaser login → Pending Tasks Approval/Rejection → Bulk Summary → Details Validation → Logout</li>
+          </ul>
+          <div class="meta-row">
+            <span class="meta-tag">Users: Initiator · Verifier · Releaser</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="phase-item ph-post">
+        <summary class="phase-header">
+          <div class="phase-num">06</div>
+          <div class="phase-title">Post-Processing</div>
+          <span class="phase-tag">Validation</span>
+          <span class="phase-chevron">▶</span>
+        </summary>
+        <div class="phase-body">
+          Assigns the correct debit type and performs country-specific validation after final approval.
+          <div class="meta-row">
+            <span class="meta-tag">Country-Specific Logic</span>
+            <span class="meta-tag">Debit Type Assignment</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="phase-item ph-logout">
+        <summary class="phase-header">
+          <div class="phase-num">07</div>
+          <div class="phase-title">Logout</div>
+          <span class="phase-tag">Cleanup</span>
+          <span class="phase-chevron">▶</span>
+        </summary>
+        <div class="phase-body">
+          Logs out all users to ensure session security and environment cleanup.
+          <div class="meta-row">
+            <span class="meta-tag">All Users</span>
+            <span class="meta-tag">Session Terminated</span>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+  <!-- Visual Workflow -->
+  <div class="card">
+    <div class="section-label">Visual Workflow</div>
+    <h2>Process Flow</h2>
+    <div class="flow-scroll">
+      <div class="flow-groups">
+
+        <!-- Initiator group -->
+        <div class="flow-group">
+          <div class="flow-group-label initiator-label">Initiator</div>
+          <div class="flow-nodes">
+            <div class="fnode initiator">Initiator<br>Login</div>
+            <div class="farrow"></div>
+            <div class="fnode initiator">Navigation</div>
+            <div class="farrow"></div>
+            <div class="fnode initiator">File<br>Preparation</div>
+            <div class="farrow"></div>
+            <div class="fnode initiator">Bulk<br>Upload</div>
+            <div class="farrow"></div>
+            <div class="fnode initiator">Submit for<br>Authorization</div>
+          </div>
+        </div>
+
+        <!-- Group connector -->
+        <div class="group-connector"><div class="farrow"></div></div>
+
+        <!-- Verifier group -->
+        <div class="flow-group">
+          <div class="flow-group-label verifier-label">Verifier</div>
+          <div class="flow-nodes">
+            <div class="fnode verifier">Verifier<br>Login</div>
+            <div class="farrow"></div>
+            <div class="fnode sub">Pending Tasks<br>Approval/Rejection</div>
+            <div class="farrow"></div>
+            <div class="fnode sub">Bulk<br>Summary</div>
+            <div class="farrow"></div>
+            <div class="fnode verifier">Verifier<br>Logout</div>
+          </div>
+        </div>
+
+        <!-- Group connector -->
+        <div class="group-connector"><div class="farrow"></div></div>
+
+        <!-- Releaser group -->
+        <div class="flow-group">
+          <div class="flow-group-label releaser-label">Releaser</div>
+          <div class="flow-nodes">
+            <div class="fnode releaser">Releaser<br>Login</div>
+            <div class="farrow"></div>
+            <div class="fnode sub">Pending Tasks<br>Approval/Rejection</div>
+            <div class="farrow"></div>
+            <div class="fnode sub">Bulk<br>Summary</div>
+            <div class="farrow"></div>
+            <div class="fnode sub">Details<br>Validation</div>
+            <div class="farrow"></div>
+            <div class="fnode sub">Post-<br>Processing</div>
+            <div class="farrow"></div>
+            <div class="fnode releaser">Releaser<br>Logout</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Best Practices -->
+  <div class="card">
+    <div class="section-label">Best Practices</div>
+    <h2>Recommendations</h2>
+    <div class="practices-grid">
+      <div class="practice-item">
+        <div class="practice-icon">👤</div>
+        <div class="practice-text">Map each login session to the correct workflow user role.</div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">✅</div>
+        <div class="practice-text">Run Details Validation only after final Releaser approval.</div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🔐</div>
+        <div class="practice-text">Ensure pending task approvals/rejections and logouts are completed per user session.</div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🗂️</div>
+        <div class="practice-text">Use unique data in uploaded files to support accurate validation.</div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🧩</div>
+        <div class="practice-text">Keep functions modular and reusable across payment types.</div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🔎</div>
+        <div class="practice-text">Trace file paths and runtime variables to simplify debugging.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
 </html>
