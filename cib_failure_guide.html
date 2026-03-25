@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIB Bulk Upload — Points of Failure</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #181c26;
+    --surface3: #1d2230;
+    --border: #222736;
+    --border2: #2a3045;
+
+    --red: #ef4444;
+    --red-dim: rgba(239,68,68,0.12);
+    --red-border: rgba(239,68,68,0.28);
+
+    --amber: #f59e0b;
+    --amber-dim: rgba(245,158,11,0.1);
+    --amber-border: rgba(245,158,11,0.28);
+
+    --emerald: #10b981;
+    --emerald-dim: rgba(16,185,129,0.1);
+    --emerald-border: rgba(16,185,129,0.28);
+
+    --cyan: #06b6d4;
+    --text-primary: #eef2ff;
+    --text-secondary: #8892aa;
+    --text-muted: #4a5370;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Noise texture overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* Glow blobs */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.07;
+  }
+  .blob-red   { width: 500px; height: 500px; background: var(--red);    top: -100px; left: -100px; }
+  .blob-amber { width: 400px; height: 400px; background: var(--amber);  bottom: 0; right: -80px; }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 56px 28px 80px;
+  }
+
+  /* ── Header ── */
+  .header {
+    margin-bottom: 52px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 24px;
+  }
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .header-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 22px; height: 1.5px;
+    background: var(--red);
+    border-radius: 2px;
+  }
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--text-primary);
+  }
+  .header h1 span {
+    background: linear-gradient(110deg, var(--red) 0%, var(--amber) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header-sub {
+    margin-top: 14px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    font-weight: 300;
+    max-width: 520px;
+  }
+  .header-badge-wrap { display: flex; gap: 10px; flex-direction: column; align-items: flex-end; padding-top: 4px; }
+  .status-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+  }
+  .status-chip .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.8); }
+  }
+  .chip-red    { color: var(--red);     border-color: var(--red-border);     background: var(--red-dim); }
+  .chip-red    .dot { background: var(--red); }
+  .chip-amber  { color: var(--amber);   border-color: var(--amber-border);   background: var(--amber-dim); }
+  .chip-amber  .dot { background: var(--amber); }
+  .chip-green  { color: var(--emerald); border-color: var(--emerald-border); background: var(--emerald-dim); }
+  .chip-green  .dot { background: var(--emerald); }
+
+  /* ── Stats row ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.4s ease both;
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .stat-card.s-red::after    { background: linear-gradient(90deg, transparent, var(--red), transparent); }
+  .stat-card.s-amber::after  { background: linear-gradient(90deg, transparent, var(--amber), transparent); }
+  .stat-card.s-green::after  { background: linear-gradient(90deg, transparent, var(--emerald), transparent); }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 6px;
+  }
+  .s-red   .stat-num { color: var(--red); }
+  .s-amber .stat-num { color: var(--amber); }
+  .s-green .stat-num { color: var(--emerald); }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.4;
+  }
+  .stat-icon {
+    position: absolute;
+    top: 18px; right: 20px;
+    font-size: 1.5rem;
+    opacity: 0.2;
+  }
+
+  /* ── Section wrapper ── */
+  .section-block {
+    margin-bottom: 32px;
+    animation: fadeUp 0.4s ease both;
+  }
+  .section-block:nth-child(4) { animation-delay: 0.08s; }
+  .section-block:nth-child(5) { animation-delay: 0.14s; }
+  .section-block:nth-child(6) { animation-delay: 0.20s; }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .section-icon {
+    width: 42px; height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    border: 1px solid;
+  }
+  .icon-red    { background: var(--red-dim);     border-color: var(--red-border); }
+  .icon-amber  { background: var(--amber-dim);   border-color: var(--amber-border); }
+  .icon-green  { background: var(--emerald-dim); border-color: var(--emerald-border); }
+
+  .section-title-wrap { flex: 1; }
+  .section-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .kicker-red   { color: var(--red); }
+  .kicker-amber { color: var(--amber); }
+  .kicker-green { color: var(--emerald); }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── Failure cards ── */
+  .failure-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+
+  .failure-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .failure-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  }
+  .failure-card.fc-red:hover   { border-color: var(--red-border); }
+  .failure-card.fc-amber:hover { border-color: var(--amber-border); }
+
+  .fc-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .fc-num::before {
+    content: attr(data-n);
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .fc-red  .fc-num { color: var(--red); }
+  .fc-red  .fc-num::before { background: var(--red-dim); border: 1px solid var(--red-border); color: var(--red); }
+  .fc-amber .fc-num { color: var(--amber); }
+  .fc-amber .fc-num::before { background: var(--amber-dim); border: 1px solid var(--amber-border); color: var(--amber); }
+
+  .fc-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .fc-desc {
+    font-size: 0.79rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  /* Subtle top accent per card */
+  .failure-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 20%; right: 20%;
+    height: 1px;
+    border-radius: 0 0 4px 4px;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .fc-red::before    { background: var(--red); }
+  .fc-amber::before  { background: var(--amber); }
+  .failure-card:hover::before { opacity: 1; }
+
+  /* ── Quick Fixes ── */
+  .fix-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .fix-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    align-items: start;
+    gap: 16px;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .fix-item:hover {
+    border-color: var(--emerald-border);
+    transform: translateX(4px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+  }
+  .fix-step {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--emerald);
+    line-height: 1;
+    padding-top: 2px;
+    opacity: 0.7;
+  }
+  .fix-body { }
+  .fix-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+  }
+  .fix-desc {
+    font-size: 0.81rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .fix-tag {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: var(--emerald-dim);
+    border: 1px solid var(--emerald-border);
+    color: var(--emerald);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
+    margin: 8px 0 32px;
+  }
+
+  /* ── Footer note ── */
+  .footer-note {
+    margin-top: 48px;
+    padding: 22px 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    animation: fadeUp 0.4s ease 0.3s both;
+  }
+  .footer-note-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .footer-note p {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .footer-note strong { color: var(--text-primary); font-weight: 600; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .stats-row .stat-card:nth-child(1) { animation-delay: 0.05s; }
+  .stats-row .stat-card:nth-child(2) { animation-delay: 0.10s; }
+  .stats-row .stat-card:nth-child(3) { animation-delay: 0.15s; }
+
+  @media (max-width: 640px) {
+    .header { grid-template-columns: 1fr; }
+    .header-badge-wrap { flex-direction: row; align-items: flex-start; }
+    .stats-row { grid-template-columns: 1fr; }
+    .page-wrap { padding: 32px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="blob blob-red"></div>
+<div class="blob blob-amber"></div>
+
+<div class="page-wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="header-eyebrow">CIB Bulk Upload · Diagnostic Reference</div>
+      <h1>Common Points<br>of <span>Failure</span></h1>
+      <p class="header-sub">A structured reference for diagnosing, categorising, and resolving failures in the CIB Bulk Upload automation workflow.</p>
+    </div>
+    <div class="header-badge-wrap">
+      <div class="status-chip chip-red"><span class="dot"></span>Scripting Issues</div>
+      <div class="status-chip chip-amber"><span class="dot"></span>Application Issues</div>
+      <div class="status-chip chip-green"><span class="dot"></span>Quick Fixes</div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card s-red">
+      <div class="stat-icon">🐛</div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Scripting failure<br>categories</div>
+    </div>
+    <div class="stat-card s-amber">
+      <div class="stat-icon">⚠️</div>
+      <div class="stat-num">5</div>
+      <div class="stat-label">Application issue<br>categories</div>
+    </div>
+    <div class="stat-card s-green">
+      <div class="stat-icon">🔧</div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Quick fix<br>strategies</div>
+    </div>
+  </div>
+
+  <!-- Scripting Issues -->
+  <div class="section-block">
+    <div class="section-head">
+      <div class="section-icon icon-red">🐛</div>
+      <div class="section-title-wrap">
+        <div class="section-kicker kicker-red">Category 01</div>
+        <div class="section-title">Scripting Issues</div>
+      </div>
+    </div>
+
+    <div class="failure-grid">
+
+      <div class="failure-card fc-red">
+        <div class="fc-num" data-n="1">Mapping Error</div>
+        <div class="fc-title">Wrong Status Mapping in Bulk Summary</div>
+        <div class="fc-desc">The script maps an incorrect status value in the bulk summary step, causing validation mismatches and test failures.</div>
+      </div>
+
+      <div class="failure-card fc-red">
+        <div class="fc-num" data-n="2">Validation Error</div>
+        <div class="fc-title">Wrong Mapping or Text Validations in Receipt / Submit for Authorization</div>
+        <div class="fc-desc">Incorrect field mappings or mismatched text assertions in the receipt or authorization submission step break downstream checks.</div>
+      </div>
+
+      <div class="failure-card fc-red">
+        <div class="fc-num" data-n="3">Test Data Error</div>
+        <div class="fc-title">Wrong Test Data Passed to Bulk Summary</div>
+        <div class="fc-desc">Incorrect or stale test data is supplied to the bulk summary function, leading to assertion failures and unpredictable results.</div>
+      </div>
+
+      <div class="failure-card fc-red">
+        <div class="fc-num" data-n="4">Encoding Error</div>
+        <div class="fc-title">Conversion Failed — Special Characters in Random String</div>
+        <div class="fc-desc">Randomly generated strings containing special characters break the file conversion step, causing runtime exceptions.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Application Issues -->
+  <div class="section-block">
+    <div class="section-head">
+      <div class="section-icon icon-amber">⚠️</div>
+      <div class="section-title-wrap">
+        <div class="section-kicker kicker-amber">Category 02</div>
+        <div class="section-title">Application Issues</div>
+      </div>
+    </div>
+
+    <div class="failure-grid">
+
+      <div class="failure-card fc-amber">
+        <div class="fc-num" data-n="1">Rejection</div>
+        <div class="fc-title">Payments Being Rejected in Summary</div>
+        <div class="fc-desc">Payments that should pass are rejected at the summary stage due to application-side validation bugs or configuration issues.</div>
+      </div>
+
+      <div class="failure-card fc-amber">
+        <div class="fc-num" data-n="2">Conversion</div>
+        <div class="fc-title">Conversion Failure — Application-Side</div>
+        <div class="fc-desc">The application fails to convert the uploaded file due to internal processing errors unrelated to the file content itself.</div>
+      </div>
+
+      <div class="failure-card fc-amber">
+        <div class="fc-num" data-n="3">Performance</div>
+        <div class="fc-title">Excessive Loading</div>
+        <div class="fc-desc">Pages or processing steps take an abnormally long time to respond, causing timeouts and cascading test failures.</div>
+      </div>
+
+      <div class="failure-card fc-amber">
+        <div class="fc-num" data-n="4">Stuck State</div>
+        <div class="fc-title">Payments Stuck in "Success" or "In Process"</div>
+        <div class="fc-desc">Payments remain indefinitely in an intermediate state, preventing completion of the workflow and blocking downstream steps.</div>
+      </div>
+
+      <div class="failure-card fc-amber">
+        <div class="fc-num" data-n="5">Misc Errors</div>
+        <div class="fc-title">Other Errors &amp; Invalid Rejections</div>
+        <div class="fc-desc">Any other unexpected application errors, or payments being rejected when they should not be — indicative of defects requiring investigation.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Quick Fixes -->
+  <div class="section-block">
+    <div class="section-head">
+      <div class="section-icon icon-green">🔧</div>
+      <div class="section-title-wrap">
+        <div class="section-kicker kicker-green">Resolution Guide</div>
+        <div class="section-title">Quick Fixes</div>
+      </div>
+    </div>
+
+    <div class="fix-list">
+
+      <div class="fix-item">
+        <div class="fix-step">01</div>
+        <div class="fix-body">
+          <div class="fix-title">Replicate via the Same Flow in the Report</div>
+          <div class="fix-desc">Use the same execution flow documented in the report and attempt to reproduce the failure manually. This confirms whether the issue is a genuine defect or a transient/environment-specific problem before escalating.</div>
+          <span class="fix-tag">Defect Confirmation</span>
+        </div>
+      </div>
+
+      <div class="fix-item">
+        <div class="fix-step">02</div>
+        <div class="fix-body">
+          <div class="fix-title">Fix Test Data Mapping</div>
+          <div class="fix-desc">For test data mapping failures, verify the correct user is mapped in the login step, that the correct status is used for bulk summary assertions, and that all field values in the Details Validation function match the expected data precisely.</div>
+          <span class="fix-tag">Data Mapping</span>
+        </div>
+      </div>
+
+      <div class="fix-item">
+        <div class="fix-step">03</div>
+        <div class="fix-body">
+          <div class="fix-title">Compare Screenshots Against Expected Baseline</div>
+          <div class="fix-desc">Refer to the captured screenshot from the failed run and compare it side-by-side with the expected screenshot. Visual differences pinpoint where the UI diverges from the expected state, narrowing down the root cause quickly.</div>
+          <span class="fix-tag">Visual Validation</span>
+        </div>
+      </div>
+
+      <div class="fix-item">
+        <div class="fix-step">04</div>
+        <div class="fix-body">
+          <div class="fix-title">Inspect the Logs for Detailed Failure Reason</div>
+          <div class="fix-desc">Refer to the execution logs to find the exact error message, stack trace, or assertion output. Logs provide the ground truth for what the system encountered, especially for application-side issues that are not visible in screenshots.</div>
+          <span class="fix-tag">Log Analysis</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer note -->
+  <div class="footer-note">
+    <div class="footer-note-icon">💡</div>
+    <p><strong>Tip:</strong> Always categorise a failure as either a <strong>scripting issue</strong> or an <strong>application issue</strong> before applying a fix. Scripting issues can be resolved in the automation codebase; application issues must be raised as defects with the development team and tracked through the standard defect lifecycle.</p>
+  </div>
+
+</div>
+</body>
+</html>
